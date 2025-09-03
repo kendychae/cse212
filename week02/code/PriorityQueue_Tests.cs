@@ -15,7 +15,7 @@ public class PriorityQueueTests
         priorityQueue.Enqueue("Low", 1);
         priorityQueue.Enqueue("High", 3);
         priorityQueue.Enqueue("Medium", 2);
-        
+
         Assert.AreEqual("High", priorityQueue.Dequeue());
         Assert.AreEqual("Medium", priorityQueue.Dequeue());
         Assert.AreEqual("Low", priorityQueue.Dequeue());
@@ -31,14 +31,14 @@ public class PriorityQueueTests
         priorityQueue.Enqueue("First", 2);
         priorityQueue.Enqueue("Second", 2);
         priorityQueue.Enqueue("Third", 2);
-        
+
         Assert.AreEqual("First", priorityQueue.Dequeue());
         Assert.AreEqual("Second", priorityQueue.Dequeue());
         Assert.AreEqual("Third", priorityQueue.Dequeue());
     }
 
     // Add more test cases as needed below.
-    
+
     [TestMethod]
     // Scenario: Try to dequeue from empty queue
     // Expected Result: Should throw InvalidOperationException with message "The queue is empty."
@@ -46,7 +46,7 @@ public class PriorityQueueTests
     public void TestPriorityQueue_Empty()
     {
         var priorityQueue = new PriorityQueue();
-        
+
         try
         {
             priorityQueue.Dequeue();
@@ -61,7 +61,7 @@ public class PriorityQueueTests
             Assert.Fail($"Unexpected exception of type {e.GetType()} caught: {e.Message}");
         }
     }
-    
+
     [TestMethod]
     // Scenario: Mixed priorities with multiple same-priority items
     // Expected Result: Higher priority first, then FIFO within same priority
@@ -74,7 +74,7 @@ public class PriorityQueueTests
         priorityQueue.Enqueue("C", 2);
         priorityQueue.Enqueue("D", 3);
         priorityQueue.Enqueue("E", 1);
-        
+
         Assert.AreEqual("B", priorityQueue.Dequeue()); // First with priority 3
         Assert.AreEqual("D", priorityQueue.Dequeue()); // Second with priority 3
         Assert.AreEqual("C", priorityQueue.Dequeue()); // Only with priority 2
