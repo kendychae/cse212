@@ -24,20 +24,20 @@ public static class SetsAndMaps
         var wordSet = new HashSet<string>(words);
         var result = new List<string>();
         var processed = new HashSet<string>();
-        
+
         foreach (string word in words)
         {
             // Skip if already processed this word
             if (processed.Contains(word))
                 continue;
-                
+
             // Create the reverse of the word
             string reverse = new string(word.Reverse().ToArray());
-            
+
             // Skip if letters are the same (like "aa")
             if (word == reverse)
                 continue;
-                
+
             // Check if the reverse exists in our set and hasn't been processed
             if (wordSet.Contains(reverse) && !processed.Contains(reverse))
             {
@@ -46,7 +46,7 @@ public static class SetsAndMaps
                 processed.Add(reverse);
             }
         }
-        
+
         return result.ToArray();
     }
 
@@ -71,7 +71,7 @@ public static class SetsAndMaps
             if (fields.Length > 3)
             {
                 string degree = fields[3].Trim();
-                
+
                 // Add or increment the count for this degree
                 if (degrees.ContainsKey(degree))
                 {
@@ -108,14 +108,14 @@ public static class SetsAndMaps
         // Remove spaces and convert to lowercase
         word1 = word1.Replace(" ", "").ToLower();
         word2 = word2.Replace(" ", "").ToLower();
-        
+
         // If lengths are different, they can't be anagrams
         if (word1.Length != word2.Length)
             return false;
-            
+
         // Count frequency of each character in word1
         var charCount = new Dictionary<char, int>();
-        
+
         foreach (char c in word1)
         {
             if (charCount.ContainsKey(c))
@@ -123,26 +123,26 @@ public static class SetsAndMaps
             else
                 charCount[c] = 1;
         }
-        
+
         // Subtract frequency for each character in word2
         foreach (char c in word2)
         {
             if (!charCount.ContainsKey(c))
                 return false;
-                
+
             charCount[c]--;
-            
+
             if (charCount[c] < 0)
                 return false;
         }
-        
+
         // Check if all counts are zero
         foreach (var count in charCount.Values)
         {
             if (count != 0)
                 return false;
         }
-        
+
         return true;
     }
 
@@ -173,19 +173,19 @@ public static class SetsAndMaps
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
 
         var earthquakeSummaries = new List<string>();
-        
+
         foreach (var feature in featureCollection.Features)
         {
             if (feature.Properties != null)
             {
                 string place = feature.Properties.Place ?? "Unknown location";
                 double magnitude = feature.Properties.Mag;
-                
+
                 string summary = $"{place} - Mag {magnitude}";
                 earthquakeSummaries.Add(summary);
             }
         }
-        
+
         return earthquakeSummaries.ToArray();
     }
 }
