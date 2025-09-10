@@ -17,7 +17,7 @@ public static class Recursion
         // Base case: if n <= 0, return 0
         if (n <= 0)
             return 0;
-        
+
         // Recursive case: n^2 + sum of squares from 1 to (n-1)
         return n * n + SumSquaresRecursive(n - 1);
     }
@@ -49,7 +49,7 @@ public static class Recursion
             results.Add(word);
             return;
         }
-        
+
         // Recursive case: try adding each available letter
         for (int i = 0; i < letters.Length; i++)
         {
@@ -108,7 +108,7 @@ public static class Recursion
         // Initialize memoization dictionary if not provided
         if (remember == null)
             remember = new Dictionary<int, decimal>();
-        
+
         // Base Cases
         if (s == 0)
             return 0;
@@ -124,13 +124,13 @@ public static class Recursion
             return remember[s];
 
         // Solve using recursion with memoization
-        decimal ways = CountWaysToClimb(s - 1, remember) + 
-                      CountWaysToClimb(s - 2, remember) + 
+        decimal ways = CountWaysToClimb(s - 1, remember) +
+                      CountWaysToClimb(s - 2, remember) +
                       CountWaysToClimb(s - 3, remember);
-        
+
         // Store the result for future use
         remember[s] = ways;
-        
+
         return ways;
     }
 
@@ -156,12 +156,12 @@ public static class Recursion
             results.Add(pattern);
             return;
         }
-        
+
         // Recursive case: replace the first wildcard with '0' and '1'
         // Replace with '0'
         string pattern0 = pattern[..wildcardIndex] + "0" + pattern[(wildcardIndex + 1)..];
         WildcardBinary(pattern0, results);
-        
+
         // Replace with '1'
         string pattern1 = pattern[..wildcardIndex] + "1" + pattern[(wildcardIndex + 1)..];
         WildcardBinary(pattern1, results);
@@ -175,17 +175,18 @@ public static class Recursion
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
-        if (currPath == null) {
+        if (currPath == null)
+        {
             currPath = new List<ValueTuple<int, int>>();
         }
-        
+
         // Check if current position is valid
         if (!maze.IsValidMove(currPath, x, y))
             return;
-        
+
         // Add current position to the path
         currPath.Add((x, y));
-        
+
         // Check if we've reached the end
         if (maze.IsEnd(x, y))
         {
