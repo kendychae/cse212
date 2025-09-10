@@ -51,16 +51,16 @@ public static class Trees
         // Base case: if first > last, there are no elements to process
         if (first > last)
             return;
-        
+
         // Find the middle index
         int middle = (first + last) / 2;
-        
+
         // Insert the middle value into the BST
         bst.Insert(sortedNumbers[middle]);
-        
+
         // Recursively insert the left half (before middle)
         InsertMiddle(sortedNumbers, first, middle - 1, bst);
-        
+
         // Recursively insert the right half (after middle)
         InsertMiddle(sortedNumbers, middle + 1, last, bst);
     }

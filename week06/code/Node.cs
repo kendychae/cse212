@@ -59,7 +59,7 @@ public class Node
         // Get the height of left and right subtrees
         int leftHeight = (Left is null) ? 0 : Left.GetHeight();
         int rightHeight = (Right is null) ? 0 : Right.GetHeight();
-        
+
         // Height is 1 plus the maximum of the two subtree heights
         return 1 + Math.Max(leftHeight, rightHeight);
     }
