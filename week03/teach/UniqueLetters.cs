@@ -1,5 +1,7 @@
-﻿public static class UniqueLetters {
-    public static void Run() {
+﻿public static class UniqueLetters
+{
+    public static void Run()
+    {
         var test1 = "abcdefghjiklmnopqrstuvwxyz"; // Expect True because all letters unique
         Console.WriteLine(AreUniqueLetters(test1));
 
@@ -13,16 +15,23 @@
     /// <summary>Determine if there are any duplicate letters in the text provided</summary>
     /// <param name="text">Text to check for duplicate letters</param>
     /// <returns>true if all letters are unique, otherwise false</returns>
-    private static bool AreUniqueLetters(string text) {
-        // TODO Problem 1 - Replace the O(n^2) algorithm to use sets and O(n) efficiency
-        for (var i = 0; i < text.Length; ++i) {
-            for (var j = 0; j < text.Length; ++j) {
-                // Don't want to compare to yourself ... that will always result in a match
-                if (i != j && text[i] == text[j])
-                    return false;
+    private static bool AreUniqueLetters(string text)
+    {
+        // Use a HashSet to track seen characters - O(n) efficiency
+        var seenLetters = new HashSet<char>();
+
+        foreach (char letter in text)
+        {
+            // If we've already seen this letter, it's a duplicate
+            if (seenLetters.Contains(letter))
+            {
+                return false;
             }
+            // Add the letter to our set of seen letters
+            seenLetters.Add(letter);
         }
 
+        // If we get here, all letters are unique
         return true;
     }
 }
